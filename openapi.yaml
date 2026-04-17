@@ -1,0 +1,156 @@
+openapi: 3.0.0
+info:
+  title: Product Admin Dashboard API
+  version: 1.0.0
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  user:
+                    $ref: '#/components/schemas/User'
+  /users:
+    get:
+      summary: Get users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - role
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                role:
+                  type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /products:
+    get:
+      summary: Get products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      summary: Create product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - price
+                - category
+                - description
+              properties:
+                name:
+                  type: string
+                price:
+                  type: number
+                category:
+                  type: string
+                description:
+                  type: string
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+        - role
+      properties:
+        id:
+          type: string
+          x-faker: 'string.uuid'
+        name:
+          type: string
+          x-faker: 'person.fullName'
+        email:
+          type: string
+          x-faker: 'internet.email'
+        role:
+          type: string
+          x-faker: 'helpers.arrayElement(["Admin", "Editor", "Viewer"])'
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - price
+        - category
+        - description
+      properties:
+        id:
+          type: string
+          x-faker: 'string.uuid'
+        name:
+          type: string
+          x-faker: 'commerce.productName'
+        price:
+          type: number
+          x-faker: 'number.float({ min: 10, max: 1000, fractionDigits: 2 })'
+        category:
+          type: string
+          x-faker: 'commerce.department'
+        description:
+          type: string
+          x-faker: 'commerce.productDescription'

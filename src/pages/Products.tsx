@@ -144,7 +144,9 @@ const Products: React.FC = () => {
         <Box component="form" onSubmit={handleSubmit}>
           <DialogContent>
             <Stack spacing={2} sx={{ mt: 1 }}>
-              {formError && <Alert severity="error">{formError}</Alert>}
+              {formError && <Alert severity="error" data-testid="form-error-alert">
+                {formError}
+              </Alert>}
               <TextField
                 label="Product Name"
                 fullWidth
@@ -191,7 +193,9 @@ const Products: React.FC = () => {
             </Stack>
           </DialogContent>
           <DialogActions sx={{ p: 3 }}>
-            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose} data-testid="cancel-product-button">
+              Cancel
+            </Button>
             <Button
               type="submit"
               variant="contained"

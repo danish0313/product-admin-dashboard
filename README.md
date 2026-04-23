@@ -1,3 +1,45 @@
+# azeti Working Student Code Challenge – Submission
+
+This repository contains my solution for the azeti Working Student Code Challenge.
+
+## Completed Tasks
+
+### 1. Fixed the Failing Test
+- Investigated the failing login scenario
+- Corrected the incorrect assertion in the Playwright BDD step definition
+- Both login scenarios now pass
+
+### 2. Added New E2E Coverage (Products)
+Implemented Playwright + playwright-bdd tests for:
+
+- Add a new product successfully
+- Cancel adding a product
+- Validate GET /products API request
+- Required field validation
+- Verify product appears in the list
+
+### 3. Added CI Pipeline (GitHub Actions)
+
+Runs on:
+- Push to main
+- Pull requests to main
+
+Jobs:
+- Lint (`npm run lint`)
+- E2E Tests (`npm run test:e2e`)
+
+Includes:
+- Node.js setup
+- Playwright browser install
+- Browser caching
+- Artifact upload for Playwright reports
+
+---
+
+
+
+
+
 # Product Admin Dashboard
 
 A comprehensive administration tool for managing users and products, built with a modern React stack.

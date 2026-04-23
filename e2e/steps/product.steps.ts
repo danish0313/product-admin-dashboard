@@ -1,5 +1,5 @@
 import { createBdd } from 'playwright-bdd';
-import { expect, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import {
   login,
   goToProducts,

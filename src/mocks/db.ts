@@ -1,5 +1,20 @@
 import { faker } from '@faker-js/faker';
 
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: string;
+}
+
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  category: string;
+  description: string;
+}
+
 export const mockUsers = Array.from({ length: 5 }, () => ({
   id: faker.string.uuid(),
   name: faker.person.fullName(),
@@ -21,13 +36,13 @@ let products = [...mockProducts];
 
 export const db = {
   getUsers: () => users,
-  addUser: (user: any) => {
+  addUser: (user: Omit<User, 'id'>) => {
     const newUser = { ...user, id: faker.string.uuid() };
     users = [newUser, ...users];
     return newUser;
   },
   getProducts: () => products,
-  addProduct: (product: any) => {
+  addProduct: (product: Omit<Product, 'id'>) => {
     const newProduct = { ...product, id: faker.string.uuid() };
     products = [newProduct, ...products];
     return newProduct;

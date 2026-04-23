@@ -14,7 +14,7 @@ const Login: React.FC = () => {
             localStorage.setItem('auth', 'true');
             navigate('/');
         } else {
-            setError('Invalid Credentials');
+            setError('Invalid credentials');
         }
     };
 
